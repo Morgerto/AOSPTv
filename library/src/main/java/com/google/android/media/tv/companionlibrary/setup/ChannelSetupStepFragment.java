@@ -103,6 +103,7 @@ public abstract class ChannelSetupStepFragment<J extends EpgSyncJobService>
         startScan();
     }
 
+    //开始扫描,为什么需要inputId？
     private void startScan() {
         EpgSyncJobService.cancelAllSyncRequests(getContext());
         EpgSyncJobService.requestImmediateSync(
@@ -156,6 +157,7 @@ public abstract class ChannelSetupStepFragment<J extends EpgSyncJobService>
         }
     }
 
+    //扫描结束时需要定期同步频道和节目数据
     @Override
     public void onScanFinished() {
         List<GuidedAction> actions = new ArrayList<>(1);

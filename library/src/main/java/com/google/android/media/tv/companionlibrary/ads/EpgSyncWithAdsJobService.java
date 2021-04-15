@@ -26,6 +26,7 @@ import com.google.android.media.tv.companionlibrary.sync.EpgSyncJobService;
 import java.util.ArrayList;
 import java.util.List;
 
+//这个类也是在lib里面
 /** EpgSyncJobService that inserts ads and repeats programs */
 public abstract class EpgSyncWithAdsJobService extends EpgSyncJobService {
 
@@ -33,6 +34,7 @@ public abstract class EpgSyncWithAdsJobService extends EpgSyncJobService {
      * Calls {@link #getOriginalProgramsForChannel(Uri, Channel, long, long)} and then repeats and
      * inserts ads as needed.
      */
+    //获取频道号对应的节目列表
     @Override
     public final List<Program> getProgramsForChannel(
             Uri channelUri, Channel channel, long startMs, long endMs) throws EpgSyncException {

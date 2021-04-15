@@ -23,7 +23,10 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.Surface;
+
+import com.example.android.sampletvinput.tempUtils.DebugHelpUtils;
 import com.google.android.exoplayer.CodecCounters;
 import com.google.android.exoplayer.DummyTrackRenderer;
 import com.google.android.exoplayer.ExoPlaybackException;
@@ -232,6 +235,8 @@ public class DemoPlayer implements ExoPlayer.Listener, ChunkSampleSource.EventLi
         rendererBuildingState = RENDERER_BUILDING_STATE_IDLE;
         // Disable text initially.
         player.setSelectedTrack(TYPE_TEXT, TRACK_DISABLED);
+
+        Log.i(DebugHelpUtils.Companion.getClassName(this), "blb DemoPayer is running");
     }
 
     public PlayerControl getPlayerControl() {

@@ -36,6 +36,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.util.LongSparseArray;
@@ -115,6 +116,14 @@ public abstract class BaseTvInputService extends TvInputService {
         intentFilter.addAction(TvInputManager.ACTION_PARENTAL_CONTROLS_ENABLED_CHANGED);
         registerReceiver(mParentalControlsBroadcastReceiver, intentFilter);
     }
+
+    @Nullable
+    @Override
+    public TvInputService.Session onCreateSession(String s) {
+        return null;
+    }
+
+
 
     private void updateChannelMap() {
         ComponentName component =
@@ -733,6 +742,9 @@ public abstract class BaseTvInputService extends TvInputService {
          * @param startPosMs Start position of content video.
          * @return Whether playing this program was successful.
          */
+        /***
+         然后，系统获取当前安排的节目并调用您会话的 onPlayProgram() 方法，指定节目信息和开始时间（以毫秒为单位）。使用 TvPlayer 接口开始播放节目。
+         */
         public abstract boolean onPlayProgram(Program program, long startPosMs);
 
         /**
@@ -752,6 +764,9 @@ public abstract class BaseTvInputService extends TvInputService {
          *
          * @param channel The channel that the user wants to watch.
          */
+        /*当用户使用系统 TV 应用开始观看其中一个频道时，系统会调用您会话的 onPlayChannel() 方法。
+        如果您在节目开始播放之前需要进行任何特殊的频道初始化，请替换此方法。
+        */
         public void onPlayChannel(Channel channel) {
             // Do nothing.
         }

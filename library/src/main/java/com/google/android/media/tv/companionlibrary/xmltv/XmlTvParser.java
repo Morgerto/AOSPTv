@@ -494,9 +494,10 @@ public class XmlTvParser {
             this.mPrograms = new ArrayList<>(programs);
             // Place programs into the epg map
             mProgramMap = new HashMap<>();
+            //这里的代码主要是根据channels的mOriginalNetworkId和programs建立起对应关系，然后每次都从programs里面移除，
             for (Channel channel : channels) {
-                List<Program> programsForChannel = new ArrayList<>();
-                Iterator<Program> programIterator = programs.iterator();
+                List<Program> programsForChannel = new ArrayList<>();//创建空的program的list
+                Iterator<Program> programIterator = programs.iterator();//拿到program的迭代器
                 while (programIterator.hasNext()) {
                     Program program = programIterator.next();
                     if (program.getChannelId() == channel.getOriginalNetworkId()) {

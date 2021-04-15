@@ -39,6 +39,7 @@ import com.example.android.sampletvinput.R;
 import com.example.android.sampletvinput.SampleJobService;
 import com.example.android.sampletvinput.player.DemoPlayer;
 import com.example.android.sampletvinput.player.RendererBuilderFactory;
+import com.example.android.sampletvinput.tempUtils.DebugHelpUtils;
 import com.google.android.exoplayer.ExoPlayer;
 import com.google.android.exoplayer.MediaFormat;
 import com.google.android.exoplayer.text.CaptionStyleCompat;
@@ -92,12 +93,14 @@ public class RichTvInputService extends BaseTvInputService {
     public void onCreate() {
         super.onCreate();
         mCaptioningManager = (CaptioningManager) getSystemService(Context.CAPTIONING_SERVICE);
+        Log.i(DebugHelpUtils.Companion.getClassName(this), "blb service is running:");
     }
 
     @Override
     public final Session onCreateSession(String inputId) {
         RichTvInputSessionImpl session = new RichTvInputSessionImpl(this, inputId);
         session.setOverlayViewEnabled(true);
+        Log.i(DebugHelpUtils.Companion.getClassName(this), "blb service onCreateSession is running:");
         return super.sessionCreated(session);
     }
 
@@ -126,6 +129,8 @@ public class RichTvInputService extends BaseTvInputService {
             mCaptionEnabled = mCaptioningManager.isEnabled();
             mContext = context;
             mInputId = inputId;
+
+            Log.i(DebugHelpUtils.Companion.getClassName(this), "blb service RichTvInputSessionImpl constructor is running:");
         }
 
         @Override
@@ -196,6 +201,7 @@ public class RichTvInputService extends BaseTvInputService {
 
         @Override
         public boolean onPlayProgram(Program program, long startPosMs) {
+            Log.i(DebugHelpUtils.Companion.getClassName(this), "blb service RichTvInputSessionImpl onPlayProgram is running:");
             if (program == null) {
                 requestEpgSync(getCurrentChannelUri());
                 notifyVideoUnavailable(TvInputManager.VIDEO_UNAVAILABLE_REASON_TUNING);

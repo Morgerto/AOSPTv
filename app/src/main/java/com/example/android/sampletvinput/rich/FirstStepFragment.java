@@ -22,7 +22,11 @@ import android.support.annotation.NonNull;
 import android.support.v17.leanback.app.GuidedStepFragment;
 import android.support.v17.leanback.widget.GuidanceStylist.Guidance;
 import android.support.v17.leanback.widget.GuidedAction;
+import android.util.Log;
+
 import com.example.android.sampletvinput.R;
+import com.example.android.sampletvinput.tempUtils.DebugHelpUtils;
+
 import java.util.List;
 
 /** Introduction step in the input setup flow. */
@@ -52,6 +56,7 @@ public class FirstStepFragment extends GuidedStepFragment {
                         .title(R.string.rich_setup_cancel)
                         .build());
         //TODO add about screen
+        Log.i(DebugHelpUtils.Companion.getClassName(this), "blb onCreateActions");
     }
 
     @Override

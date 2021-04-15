@@ -19,12 +19,17 @@ package com.example.android.sampletvinput.rich;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v17.leanback.app.GuidedStepFragment;
+import android.util.Log;
 
 /** The setup activity for demonstrating {@link RichTvInputService}. */
 public class RichTvInputSetupActivity extends Activity {
+
+    private String TAG = getClass().getSimpleName();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG, "blb get inputid info:");
         if (null == savedInstanceState) {
             GuidedStepFragment.addAsRoot(this, new FirstStepFragment(), android.R.id.content);
         }

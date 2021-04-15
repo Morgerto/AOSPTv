@@ -17,7 +17,10 @@ package com.example.android.sampletvinput;
 
 import android.media.tv.TvContract;
 import android.net.Uri;
+import android.util.Log;
+
 import com.example.android.sampletvinput.rich.RichFeedUtil;
+import com.example.android.sampletvinput.tempUtils.DebugHelpUtils;
 import com.google.android.exoplayer.util.Util;
 import com.google.android.media.tv.companionlibrary.ads.EpgSyncWithAdsJobService;
 import com.google.android.media.tv.companionlibrary.model.Advertisement;
@@ -31,6 +34,7 @@ import java.util.List;
 /**
  * EpgSyncJobService that periodically runs to update channels and programs.
  */
+//这个类负责真正的工作，依赖lib里面的内容
 public class SampleJobService extends EpgSyncWithAdsJobService {
     private String MPEG_DASH_CHANNEL_NAME = "MPEG_DASH";
     private String MPEG_DASH_CHANNEL_NUMBER = "3";
@@ -65,9 +69,17 @@ public class SampleJobService extends EpgSyncWithAdsJobService {
             "%3Dlinear&correlator=";
 
     @Override
+    public void onCreate() {
+        super.onCreate();
+
+        Log.i(DebugHelpUtils.Companion.getClassName(this), "blb sample job service is on create");
+    }
+
+    @Override
     public List<Channel> getChannels() {
         // Add channels through an XMLTV file
         XmlTvParser.TvListing listings = RichFeedUtil.getRichTvListings(this);
+        //这里把从本地文件里的xml解析出来，添加到频道节目里面
         List<Channel> channelList = new ArrayList<>(listings.getChannels());
 
         // Build advertisement list for the channel.
@@ -79,6 +91,7 @@ public class SampleJobService extends EpgSyncWithAdsJobService {
         channelAdList.add(channelAd);
 
         // Add a channel programmatically
+        //这里是手动自定义创建的channel
         InternalProviderData internalProviderData = new InternalProviderData();
         internalProviderData.setRepeatable(true);
         internalProviderData.setAds(channelAdList);
@@ -90,14 +103,20 @@ public class SampleJobService extends EpgSyncWithAdsJobService {
                 .setInternalProviderData(internalProviderData)
                 .build();
         channelList.add(channelTears);
+
+        Log.i(DebugHelpUtils.Companion.getClassName(this), "blb get channels successful");
         return channelList;
     }
 
     @Override
     public List<Program> getOriginalProgramsForChannel(Uri channelUri, Channel channel,
             long startMs, long endMs) {
+
+        Log.i(DebugHelpUtils.Companion.getClassName(this), "blb get programs successful");
+
         if (!channel.getDisplayName().equals(MPEG_DASH_CHANNEL_NAME)) {
             // Is an XMLTV Channel
+            //是从本地创建的xml频道
             XmlTvParser.TvListing listings = RichFeedUtil.getRichTvListings(getApplicationContext());
             return listings.getPrograms(channel);
         } else {

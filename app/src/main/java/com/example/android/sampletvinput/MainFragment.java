@@ -15,12 +15,16 @@
 package com.example.android.sampletvinput;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
+
+import com.example.android.sampletvinput.rich.RichTvInputSetupActivity;
 
 /**
  * Fragment that shows a web page for Sample TV Input introduction.
@@ -29,18 +33,32 @@ public class MainFragment extends Fragment {
     private static final String URL =
             "http://github.com/googlesamples/androidtv-sample-inputs/blob/master/README.md";
 
+    private View rootView;
+    private Button test1;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.main_fragment, null);
+        rootView = inflater.inflate(R.layout.main_fragment, null);
+
+        test1 = rootView.findViewById(R.id.test1);
+        test1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), RichTvInputSetupActivity.class));
+            }
+        });
+
+        return rootView;
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        WebView webView = (WebView) getView();
-        webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl(URL);
+//        WebView webView = (WebView) getView();
+//        webView.setWebViewClient(new WebViewClient());
+//        webView.loadUrl(URL);
+
     }
 }
