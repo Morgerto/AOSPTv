@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.sampletvinput;
+package com.example.android.sampletvinput2;
 
 import android.media.tv.TvContract;
 import android.net.Uri;
 import android.util.Log;
 
-import com.example.android.sampletvinput.rich.RichFeedUtil;
-import com.example.android.sampletvinput.tempUtils.DebugHelpUtils;
+import com.example.android.sampletvinput2.rich.RichFeedUtil;
+import com.example.android.sampletvinput2.tempUtils.DebugHelpUtils;
 import com.google.android.exoplayer.util.Util;
 import com.google.android.media.tv.companionlibrary.ads.EpgSyncWithAdsJobService;
 import com.google.android.media.tv.companionlibrary.model.Advertisement;
@@ -28,6 +28,7 @@ import com.google.android.media.tv.companionlibrary.model.Channel;
 import com.google.android.media.tv.companionlibrary.model.InternalProviderData;
 import com.google.android.media.tv.companionlibrary.model.Program;
 import com.google.android.media.tv.companionlibrary.xmltv.XmlTvParser;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,6 +107,7 @@ public class SampleJobService extends EpgSyncWithAdsJobService {
 
         Log.i(DebugHelpUtils.Companion.getClassName(this), "blb get channels successful");
         return channelList;
+//        return null;
     }
 
     @Override
@@ -154,5 +156,7 @@ public class SampleJobService extends EpgSyncWithAdsJobService {
                     .build());
             return programsTears;
         }
+
+//        return null;
     }
 }

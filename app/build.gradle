@@ -6,7 +6,7 @@ android {
     buildToolsVersion "27.0.3"
 
     defaultConfig {
-        applicationId "com.example.android.sampletvinput"
+        applicationId "com.example.android.sampletvinput2"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 3
@@ -33,12 +33,21 @@ ext {
 }
 
 dependencies {
-    implementation project(':library')
+//    implementation project(':library')
     implementation "com.android.support:recyclerview-v7:$appCompatVersion"
     implementation "com.android.support:leanback-v17:$appCompatVersion"
     implementation "com.android.support:appcompat-v7:$appCompatVersion"
     implementation 'com.google.android.exoplayer:exoplayer:r1.5.14'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'com.google.android.libraries.tv:companionlibrary:0.4.1'
+//    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    //这个是因为底层那个库里面有引用到这个代码判断，要不找不到Assert
+    api 'junit:junit:4.12'
+
+    //这个是播放器的远程库,播放时需要一个播放器，
+    implementation 'com.google.android.exoplayer:exoplayer:r1.5.14'
 }
 repositories {
     mavenCentral()

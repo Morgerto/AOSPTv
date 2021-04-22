@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.sampletvinput.player;
+package com.example.android.sampletvinput2.player;
 
 import android.media.PlaybackParams;
 import android.os.Build;

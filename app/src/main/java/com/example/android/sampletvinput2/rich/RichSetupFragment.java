@@ -13,19 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.sampletvinput.rich;
+package com.example.android.sampletvinput2.rich;
 
 import android.graphics.drawable.Drawable;
 import android.media.tv.TvInputInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v17.leanback.widget.GuidanceStylist.Guidance;
-import android.util.DebugUtils;
 import android.util.Log;
 
-import com.example.android.sampletvinput.R;
-import com.example.android.sampletvinput.SampleJobService;
-import com.example.android.sampletvinput.tempUtils.DebugHelpUtils;
+import com.example.android.sampletvinput2.R;
+import com.example.android.sampletvinput2.SampleJobService;
+import com.example.android.sampletvinput2.tempUtils.DebugHelpUtils;
 import com.google.android.media.tv.companionlibrary.setup.ChannelSetupStepFragment;
 
 /**

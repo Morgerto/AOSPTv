@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.sampletvinput.player;
+package com.example.android.sampletvinput2.player;
 
 import android.annotation.TargetApi;
 import android.media.MediaCodec.CryptoException;
@@ -26,7 +26,7 @@ import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.Surface;
 
-import com.example.android.sampletvinput.tempUtils.DebugHelpUtils;
+import com.example.android.sampletvinput2.tempUtils.DebugHelpUtils;
 import com.google.android.exoplayer.CodecCounters;
 import com.google.android.exoplayer.DummyTrackRenderer;
 import com.google.android.exoplayer.ExoPlaybackException;

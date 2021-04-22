@@ -14,18 +14,16 @@
  * limitations under the License.
  */
 
-package com.example.android.sampletvinput;
+package com.example.android.sampletvinput2.rich;
 
 import android.app.Activity;
 import android.os.Bundle;
+import com.example.android.sampletvinput2.R;
 
-/**
- * MainActivity class that loads {@link MainFragment}.
- */
-public class MainActivity extends Activity {
+public class RichAppLinkDetailsActivity extends Activity {
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.rich_app_link_details_fragment);
     }
 }

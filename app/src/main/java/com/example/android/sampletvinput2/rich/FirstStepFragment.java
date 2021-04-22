@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.sampletvinput.rich;
+package com.example.android.sampletvinput2.rich;
 
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
@@ -24,8 +24,8 @@ import android.support.v17.leanback.widget.GuidanceStylist.Guidance;
 import android.support.v17.leanback.widget.GuidedAction;
 import android.util.Log;
 
-import com.example.android.sampletvinput.R;
-import com.example.android.sampletvinput.tempUtils.DebugHelpUtils;
+import com.example.android.sampletvinput2.R;
+import com.example.android.sampletvinput2.tempUtils.DebugHelpUtils;
 
 import java.util.List;
 

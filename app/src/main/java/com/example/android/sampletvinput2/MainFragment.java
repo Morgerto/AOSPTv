@@ -12,7 +12,7 @@
  * the License.
  */
 
-package com.example.android.sampletvinput;
+package com.example.android.sampletvinput2;
 
 import android.app.Fragment;
 import android.content.Intent;
@@ -20,11 +20,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
 
-import com.example.android.sampletvinput.rich.RichTvInputSetupActivity;
+import com.example.android.sampletvinput2.rich.RichTvInputSetupActivity;
 
 /**
  * Fragment that shows a web page for Sample TV Input introduction.

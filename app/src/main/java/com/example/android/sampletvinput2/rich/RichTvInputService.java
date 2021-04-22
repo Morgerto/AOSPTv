@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.sampletvinput.rich;
+package com.example.android.sampletvinput2.rich;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -35,11 +35,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.accessibility.CaptioningManager;
-import com.example.android.sampletvinput.R;
-import com.example.android.sampletvinput.SampleJobService;
-import com.example.android.sampletvinput.player.DemoPlayer;
-import com.example.android.sampletvinput.player.RendererBuilderFactory;
-import com.example.android.sampletvinput.tempUtils.DebugHelpUtils;
+import com.example.android.sampletvinput2.R;
+import com.example.android.sampletvinput2.SampleJobService;
+import com.example.android.sampletvinput2.player.DemoPlayer;
+import com.example.android.sampletvinput2.player.RendererBuilderFactory;
+import com.example.android.sampletvinput2.tempUtils.DebugHelpUtils;
 import com.google.android.exoplayer.ExoPlayer;
 import com.google.android.exoplayer.MediaFormat;
 import com.google.android.exoplayer.text.CaptionStyleCompat;
@@ -93,22 +93,16 @@ public class RichTvInputService extends BaseTvInputService {
     public void onCreate() {
         super.onCreate();
         mCaptioningManager = (CaptioningManager) getSystemService(Context.CAPTIONING_SERVICE);
-        Log.i(DebugHelpUtils.Companion.getClassName(this), "blb service is running:");
+        Log.i(DebugHelpUtils.Companion.getClassName(this), "blb service oncreate is running:");
     }
 
     @Override
     public final Session onCreateSession(String inputId) {
         RichTvInputSessionImpl session = new RichTvInputSessionImpl(this, inputId);
         session.setOverlayViewEnabled(true);
-        Log.i(DebugHelpUtils.Companion.getClassName(this), "blb service onCreateSession is running:");
+        Log.i(DebugHelpUtils.Companion.getClassName(this), "blb service onCreateSession2 is running:");
         return super.sessionCreated(session);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Nullable
-    @Override
-    public TvInputService.RecordingSession onCreateRecordingSession(String inputId) {
-        return new RichRecordingSession(this, inputId);
+//        return null;
     }
 
     class RichTvInputSessionImpl extends BaseTvInputService.Session implements
@@ -382,84 +376,6 @@ public class RichTvInputService extends BaseTvInputService {
                     onTune(channelUri);
                 }
             }, EPG_SYNC_DELAYED_PERIOD_MS);
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private class RichRecordingSession extends BaseTvInputService.RecordingSession {
-        private static final String TAG = "RecordingSession";
-        private String mInputId;
-        private long mStartTimeMs;
-
-        public RichRecordingSession(Context context, String inputId) {
-            super(context, inputId);
-            mInputId = inputId;
-        }
-
-        @Override
-        public void onTune(Uri uri) {
-            super.onTune(uri);
-            if (DEBUG) {
-                Log.d(TAG, "Tune recording session to " + uri);
-            }
-            // By default, the number of tuners for this service is one. When a channel is being
-            // recorded, no other channel from this TvInputService will be accessible. Developers
-            // should call notifyError(TvInputManager.RECORDING_ERROR_RESOURCE_BUSY) to alert
-            // the framework that this recording cannot be completed.
-            // Developers can update the tuner count in xml/richtvinputservice or programmatically
-            // by adding it to TvInputInfo.updateTvInputInfo.
-            notifyTuned(uri);
-        }
-
-        @Override
-        public void onStartRecording(final Uri uri) {
-            super.onStartRecording(uri);
-            if (DEBUG) {
-                Log.d(TAG, "onStartRecording");
-            }
-            mStartTimeMs = System.currentTimeMillis();
-        }
-
-        @Override
-        public void onStopRecording(Program programToRecord) {
-            if (DEBUG) {
-                Log.d(TAG, "onStopRecording");
-            }
-            // In this sample app, since all of the content is VOD, the video URL is stored.
-            // If the video was live, the start and stop times should be noted using
-            // RecordedProgram.Builder.setStartTimeUtcMillis and .setEndTimeUtcMillis.
-            // The recordingstart time will be saved in the InternalProviderData.
-            // Additionally, the stream should be recorded and saved as
-            // a new file.
-            long currentTime = System.currentTimeMillis();
-            InternalProviderData internalProviderData = programToRecord.getInternalProviderData();
-            internalProviderData.setRecordingStartTime(mStartTimeMs);
-            RecordedProgram recordedProgram = new RecordedProgram.Builder(programToRecord)
-                        .setInputId(mInputId)
-                        .setRecordingDataUri(
-                                programToRecord.getInternalProviderData().getVideoUrl())
-                        .setRecordingDurationMillis(currentTime - mStartTimeMs)
-                        .setInternalProviderData(internalProviderData)
-                        .build();
-            notifyRecordingStopped(recordedProgram);
-        }
-
-        @Override
-        public void onStopRecordingChannel(Channel channelToRecord) {
-            if (DEBUG) {
-                Log.d(TAG, "onStopRecording");
-            }
-            // Program sources in this sample always include program info, so execution here
-            // indicates an error.
-            notifyError(TvInputManager.RECORDING_ERROR_UNKNOWN);
-            return;
-        }
-
-        @Override
-        public void onRelease() {
-            if (DEBUG) {
-                Log.d(TAG, "onRelease");
-            }
         }
     }
 }

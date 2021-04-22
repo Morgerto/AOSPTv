@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.sampletvinput.rich;
+package com.example.android.sampletvinput2.rich;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -31,7 +31,7 @@ import android.support.v17.leanback.widget.ListRow;
 import android.support.v17.leanback.widget.ListRowPresenter;
 import android.support.v17.leanback.widget.OnActionClickedListener;
 import android.support.v4.content.ContextCompat;
-import com.example.android.sampletvinput.R;
+import com.example.android.sampletvinput2.R;
 
 /**
  * Fragment that shows a simple details fragment UI.
